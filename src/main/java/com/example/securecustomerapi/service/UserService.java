@@ -1,9 +1,6 @@
 package com.example.securecustomerapi.service;
 
-import com.example.securecustomerapi.dto.LoginRequestDTO;
-import com.example.securecustomerapi.dto.LoginResponseDTO;
-import com.example.securecustomerapi.dto.RegisterRequestDTO;
-import com.example.securecustomerapi.dto.UserResponseDTO;
+import com.example.securecustomerapi.dto.*;
 
 public interface UserService {
     
@@ -12,4 +9,20 @@ public interface UserService {
     UserResponseDTO register(RegisterRequestDTO registerRequest);
     
     UserResponseDTO getCurrentUser(String username);
+
+    void changePassword(String username, ChangePasswordDTO dto);
+
+    String initiateForgotPassword(ForgotPasswordRequestDTO dto);
+
+    void resetPassword(ResetPasswordDTO dto);
+
+    UserResponseDTO updateProfile(String username, UpdateProfileDTO dto);
+
+    void deleteAccount(String username, String password);
+
+    java.util.List<UserResponseDTO> getAllUsers();
+
+    UserResponseDTO updateUserRole(Long userId, String role);
+
+    UserResponseDTO toggleUserStatus(Long userId);
 }

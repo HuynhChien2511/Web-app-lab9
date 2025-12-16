@@ -61,7 +61,10 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints
-                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/forgot-password", "/api/auth/reset-password", "/api/auth/refresh").permitAll()
+                // Admin endpoints
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                // Other domain endpoints (example)
                 .requestMatchers(HttpMethod.GET, "/api/customers/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/customers/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/customers/**").hasRole("ADMIN")
